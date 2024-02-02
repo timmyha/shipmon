@@ -2,12 +2,14 @@ package main
 
 import (
 	"github.com/PuerkitoBio/goquery"
+	"github.com/briandowns/spinner"
+	"github.com/fatih/color"
 	"github.com/olekukonko/tablewriter"
 	"log"
 	"net/http"
 	"os"
-	"github.com/fatih/color"
 	"strings"
+	"time"
 )
 
 type Carrier struct {
@@ -21,6 +23,10 @@ type Carrier struct {
 }
 
 func main() {
+
+	s := spinner.New(spinner.CharSets[39], 100*time.Millisecond)
+	s.Start()
+
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", "https://www.shippingapimonitor.com", nil)
 	if err != nil {
@@ -81,7 +87,7 @@ func main() {
 		case 3:
 			Carrier.Name = "CanadaPost"
 		}
-		if (Carrier.Status == "Online") {
+		if Carrier.Status == "Online" {
 			Carrier.Status = color.GreenString(Carrier.Status)
 		} else {
 			Carrier.Status = color.RedString(Carrier.Status)
@@ -97,5 +103,6 @@ func main() {
 		}
 		table.Append(s)
 	}
+	s.Stop()
 	table.Render()
 }
