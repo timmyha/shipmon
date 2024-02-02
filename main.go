@@ -69,7 +69,7 @@ func main() {
 
 	table := tablewriter.NewWriter(os.Stdout)
 
-	table.SetHeader([]string{"Carrier", "Status", "Response Time", "Three Minute^", "Hour^", "Day^", "Last Update"})
+	table.SetHeader([]string{"Carrier", "Status", "Response Time", "<3min^", "<1h^", "<24h^", "Last Update"})
 	for i, Carrier := range companies {
 		switch i {
 		case 0:
