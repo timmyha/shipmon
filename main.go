@@ -6,10 +6,12 @@ import (
 	"log"
 	"net/http"
 	"os"
+	color "github.com/fatih/color"
+	"strings"
 )
 
 type Carrier struct {
-	Name      string
+	Name         string
 	Status       string
 	ResponseTime string
 	ThreeMinute  string
@@ -40,7 +42,7 @@ func main() {
 			e := Carrier{}
 			sel.Find("td").Each(func(index int, sel *goquery.Selection) {
 				if index%7 == 1 {
-					e.Status = sel.Text()
+					e.Status = (sel.Text())
 				}
 				if index%7 == 2 {
 					e.ResponseTime = sel.Text()
@@ -58,7 +60,6 @@ func main() {
 					e.LastUpdate = sel.Text()
 				}
 
-				// Add the element to our array
 				if index != 0 && (index+1)%7 == 0 {
 					companies = append(companies, e)
 				}
@@ -68,29 +69,33 @@ func main() {
 
 	table := tablewriter.NewWriter(os.Stdout)
 
-	// Setting our headers
 	table.SetHeader([]string{"Carrier", "Status", "Response Time", "Three Minute^", "Hour^", "Day^", "Last Update"})
 	for i, Carrier := range companies {
-		if i == 0 {
+		switch i {
+		case 0:
 			Carrier.Name = "FedEx"
-		} else if i == 1 {
-  		Carrier.Name = "UPS"
-		} else if i == 2 {
+		case 1:
+			Carrier.Name = "UPS"
+		case 2:
 			Carrier.Name = "USPS"
-		} else if i == 3 {
+		case 3:
 			Carrier.Name = "CanadaPost"
+		}
+		if (Carrier.Status == "Online") {
+			Carrier.Status = color.GreenString(Carrier.Status)
+		} else {
+			Carrier.Status = color.RedString(Carrier.Status)
 		}
 		s := []string{
 			Carrier.Name,
 			Carrier.Status,
 			Carrier.ResponseTime,
 			Carrier.ThreeMinute,
-			Carrier.Day,
-			Carrier.Hour,
+			strings.Split(Carrier.Day, "%")[0] + "%",
+			strings.Split(Carrier.Hour, "%")[0] + "%",
 			Carrier.LastUpdate,
 		}
 		table.Append(s)
 	}
 	table.Render()
 }
-
