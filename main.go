@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
-	color "github.com/fatih/color"
+	"github.com/fatih/color"
 	"strings"
 )
 
