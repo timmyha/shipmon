@@ -32,15 +32,18 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	resp, err := client.Do(req)
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	defer resp.Body.Close()
 	doc, err := goquery.NewDocumentFromReader(resp.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	var companies []Carrier
 
 	doc.Find("table").Each(func(i int, sel *goquery.Selection) {
@@ -65,7 +68,6 @@ func main() {
 				if index%7 == 6 {
 					e.LastUpdate = sel.Text()
 				}
-
 				if index != 0 && (index+1)%7 == 0 {
 					companies = append(companies, e)
 				}
