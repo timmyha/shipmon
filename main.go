@@ -99,8 +99,8 @@ func main() {
 			Carrier.Status,
 			Carrier.ResponseTime,
 			Carrier.ThreeMinute,
-			strings.Split(Carrier.Day, "%")[0] + "%",
 			strings.Split(Carrier.Hour, "%")[0] + "%",
+			strings.Split(Carrier.Day, "%")[0] + "%",
 			Carrier.LastUpdate,
 		}
 		table.Append(s)
