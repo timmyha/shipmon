@@ -1,6 +1,6 @@
 # monitor for shipping APIs
 
-> ![warning]
+> [!error]
 > this unfortunately no longer works
 > due to shippingapimonitor not using
 > that cloud flare captcha.
