@@ -5,6 +5,10 @@
 > due to shippingapimonitor not using
 > that cloud flare captcha.
 
+> [!example] be advised
+> this is an example! it should contain useful information that the user should
+> take into consideration before going forward!
+
 #### Install:
 
 `$ go install github.com/timmyha/shipmon`
