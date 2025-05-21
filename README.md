@@ -1,14 +1,19 @@
 # monitor for shipping APIs
 
-Install:
+>![error]
+> this unfortunately no longer works
+> due to shippingapimonitor not using
+> that cloud flare captcha.
+
+#### Install:
 
 `$ go install github.com/timmyha/shipmon`
 
-Usage:
+#### Usage:
 
 `$ shipmon`
 
-Outcome:
+#### Outcome:
 
 ```
 +------------+--------+---------------+--------+------+-------+-------------------------+
