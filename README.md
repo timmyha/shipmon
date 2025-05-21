@@ -1,9 +1,9 @@
 # monitor for shipping APIs
 
->[!ERROR] RIP
->this unfortunately no longer works
->due to shippingapimonitor not using
->that cloud flare captcha.
+> [!error] RIP
+> this unfortunately no longer works
+> due to shippingapimonitor not using
+> that cloud flare captcha.
 
 #### Install:
 
